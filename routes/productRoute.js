@@ -1,3 +1,4 @@
+// productRoute.js
 import express from 'express'
 import { addProduct, removeProduct, listProducts, listAvailableProducts, updateProduct, updateProductImage, getProductPrice } from '../controller/productController.js'
 import multer from 'multer'
@@ -7,15 +8,9 @@ import { checkMaintenanceMode } from '../middleware/checkMaintenanceMode.js'
 
 const productRouter = express.Router();
 
-// store product images
-const storage = multer.diskStorage({
-    destination: "uploads",
-    filename: (req, file, callback) => {
-        return callback(null, `${Date.now()}${file.originalname}`)
-    }
-})
-
-const upload = multer({ storage: storage })
+// Configure multer for memory storage
+// This is crucial because Google Cloud Storage SDK works with buffers/streams, not local file paths.
+const upload = multer({ storage: multer.memoryStorage() });
 
 productRouter.post("/add", authenticateToken, checkAdminAccountType, checkMaintenanceMode, upload.single("image"), addProduct)
 productRouter.post("/remove", authenticateToken, checkAdminAccountType, checkMaintenanceMode, removeProduct)
