@@ -1,6 +1,6 @@
 // productRoute.js
 import express from 'express'
-import { addProduct, removeProduct, listProducts, listAvailableProducts, updateProduct, updateProductImage, getProductPrice } from '../controller/productController.js'
+import { addProduct, removeProduct, listProducts, listAvailableProducts, updateProduct, updateProductImage } from '../controller/productController.js'
 import multer from 'multer'
 import { authenticateToken } from '../middleware/authentication.js'
 import { checkAdminAccountType } from '../middleware/checkAccountType.js'
@@ -16,7 +16,6 @@ productRouter.post("/add", authenticateToken, checkAdminAccountType, checkMainte
 productRouter.post("/remove", authenticateToken, checkAdminAccountType, checkMaintenanceMode, removeProduct)
 productRouter.post("/update", authenticateToken, checkAdminAccountType, checkMaintenanceMode, updateProduct)
 productRouter.post("/updateimage", authenticateToken, checkAdminAccountType, checkMaintenanceMode, upload.single("image"), updateProductImage)
-productRouter.post("/getprice", authenticateToken, checkAdminAccountType, getProductPrice)
 productRouter.post("/listall", authenticateToken, checkAdminAccountType, listProducts)
 productRouter.get("/listavailable", listAvailableProducts)
 

@@ -334,4 +334,4 @@ const getProductPrice = async (req, res) => {
     }
 }
 
-export { addProduct, listProducts, listAvailableProducts, removeProduct, updateProduct, updateProductImage, getProductPrice }
+export { addProduct, listProducts, listAvailableProducts, removeProduct, updateProduct, updateProductImage }

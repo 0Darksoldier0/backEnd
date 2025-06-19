@@ -6,6 +6,7 @@ import userRouter from './routes/userRoute.js';
 import cartRouter from './routes/cartRoute.js';
 import orderRouter from './routes/orderRoute.js';
 import inHouseOrderRouter from './routes/inHouseOrderRoute.js';
+import analyticsRouter from './routes/analyticsRoute.js';
 import * as cron from 'node-cron';
 
 import { setMaintenanceMode } from './utils/maintenanceMode.js';
@@ -30,6 +31,7 @@ app.use("/api/user", userRouter)
 app.use("/api/cart", cartRouter)
 app.use("/api/order", orderRouter)
 app.use("/api/inhouseorder", inHouseOrderRouter)
+app.use("/api/analytics", analyticsRouter)
 
 
 // Start maintenance mode
